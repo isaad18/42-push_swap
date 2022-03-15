@@ -1,5 +1,17 @@
 #include"push_swap.h"
 
+int	startshit(s_data *data)
+{
+	int	i = 0;
+
+	while (data->tc[i])
+	{
+		data->final = ft_atoi(data->tc[i])
+		i++;
+	}
+	return (0);
+}
+
 int	jawaker(int argc, char **argv)
 {
 	int		i;
@@ -35,7 +47,7 @@ int	jawaker(int argc, char **argv)
 
 int	main(int argc, char **argv)
 {
-	char	*str;
+	s_data	data;
 	int		i;
 	int		j;
 	int		c;
@@ -43,8 +55,8 @@ int	main(int argc, char **argv)
 	i = 1;
 	c = 0;
 	j = jawaker(argc, argv);
-	str = (char *)malloc(j + 1);
-	str[j] = 0;
+	data.str = (char *)malloc(j + 1);
+	data.str[j] = 0;
 	if (argc > 1)
 	{
 		while (argv[i])
@@ -52,17 +64,18 @@ int	main(int argc, char **argv)
 			j = 0;
 			while (argv[i][j])
 			{
-				str[c] = argv[i][j];
+				data.str[c] = argv[i][j];
 				c++;
 				j++;
 			}
 			i++;
 			if (argv[i] != (void *)0)
 			{
-				str[c] = ' ';
+				data.str[c] = ' ';
 				c++;
 			}
 		}
 	}
-	printf("%s", str);
+	data.tc = ft_split(data.str, ' ');
+	startshit(&data);
 }
