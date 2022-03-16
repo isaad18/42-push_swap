@@ -1,6 +1,12 @@
 RCS	= push_swap.c\
 utils.c\
 ft_split.c\
+ft_atoi.c\
+ft_itoa.c\
+ft_strncmp.c\
+ft_strdup.c\
+ft_strlen.c\
+ft_strchr.c\
 
 OBJS	= $(RCS:.c=.o)
 

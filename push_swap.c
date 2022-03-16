@@ -1,15 +1,38 @@
 #include"push_swap.h"
 
-int	startshit(s_data *data)
+int	*startshit(s_data *data)
 {
-	int	i = 0;
+	int	i;
+	int	j;
 
+	i = 0;
+	j = wordscount(data->str, ' ');
+	data->final = malloc((sizeof(data) * (j + 1)));
 	while (data->tc[i])
 	{
-		data->final = ft_atoi(data->tc[i])
+		data->final[i] = ft_atoi(data->tc[i]);
 		i++;
 	}
-	return (0);
+	data->final[i] = 0;
+	i = 0;
+	while (data->final[i])
+	{
+		printf("%d\n", data->final[i]);
+		i++;
+	}
+	i = 0;
+	j = 0;
+	while (data->final[i])
+	{
+		j = fft_strchr(data->final, data->final[i], i);
+		if (j == 0)
+		{
+			ft_printf("%s\n", "error, duplicated number");
+			exit(0);
+		}
+		i++;
+	}
+	return (data->final);
 }
 
 int	jawaker(int argc, char **argv)
@@ -28,8 +51,11 @@ int	jawaker(int argc, char **argv)
 			j = 0;
 			while (argv[i][j])
 			{
-				if (!((argv[i][j] > 47 && argv[i][j] < 58) || argv[i][j] == ' '))
+				if (!((argv[i][j] > 47 && argv[i][j] < 58) || argv[i][j] == ' ' || argv[i][j] == '-'))
+				{
+					ft_printf("%s\n", "error, wrong input");
 					exit(0);
+				}
 				j++;
 				c++;
 			}
@@ -76,6 +102,7 @@ int	main(int argc, char **argv)
 			}
 		}
 	}
+	printf("%s\n", data.str);
 	data.tc = ft_split(data.str, ' ');
 	startshit(&data);
 }
