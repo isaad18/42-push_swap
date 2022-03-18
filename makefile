@@ -16,7 +16,7 @@ CFLAGS	= -Wall -Werror -Wextra -g
 
 ft_printf = ./ft_printf/libftprintf.a
 
-$(NAME)	:
+$(NAME)	: $(OBJS)
 		make -C ./ft_printf
 		gcc $(CFLAGS) -o push_swap $(RCS) $(ft_printf)
 

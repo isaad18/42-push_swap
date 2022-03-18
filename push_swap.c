@@ -1,22 +1,17 @@
+
 #include"push_swap.h"
 
-int	*startshit(s_data *data)
+int	*startshit(t_data *data)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = wordscount(data->str, ' ');
-	data->final = malloc((sizeof(data) * (j + 1)));
-	while (data->tc[i])
+	data->final = malloc((sizeof(int) * j));
+	while (i < j)
 	{
 		data->final[i] = ft_atoi(data->tc[i]);
-		i++;
-	}
-	data->final[i] = 0;
-	i = 0;
-	while (data->final[i])
-	{
 		printf("%d\n", data->final[i]);
 		i++;
 	}
@@ -51,23 +46,14 @@ int	jawaker(int argc, char **argv)
 			j = 0;
 			while (argv[i][j])
 			{
-				if ((argv[i][j] == ' ' && argv[i][j + 1] == ' ') || argv[i][0] == ' ')
-				{
-					ft_printf("%s\n", "error, wrong input");
-					exit(0);
-				}
-				if (!((argv[i][j] > 47 && argv[i][j] < 58) || argv[i][j] == ' ' || argv[i][j] == '-'))
+				if (!((argv[i][j] > 47 && argv[i][j] < 58) || argv
+					[i][j] == ' ' || argv[i][j] == '-' || argv[i][j] == '+'))
 				{
 					ft_printf("%s\n", "error, wrong input");
 					exit(0);
 				}
 				j++;
 				c++;
-			}
-			if (argv[i][j - 1] == ' ')
-			{
-				ft_printf("%s\n", "error, wrong input");
-				exit(0);
 			}
 			i++;
 		}
@@ -83,7 +69,7 @@ int	jawaker(int argc, char **argv)
 
 int	main(int argc, char **argv)
 {
-	s_data	data;
+	t_data	data;
 	int		i;
 	int		j;
 	int		c;
