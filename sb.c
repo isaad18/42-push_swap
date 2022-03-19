@@ -1,11 +1,11 @@
 #include"push_swap.h"
 
-int	*sb(int *s)
+int	*sb(t_data *data)
 {
 	int	c;
 
-	c = s[0];
-	s[0] = s[1];
-	s[1] = c;
-	return (s);
+	c = data->stack[0];
+	data->stack[0] = data->stack[1];
+	data->stack[1] = c;
+	return (data->stack);
 }

@@ -4,27 +4,38 @@
 int	*startshit(t_data *data)
 {
 	int	i;
-	int	j;
+	int a;
 
 	i = 0;
-	j = wordscount(data->str, ' ');
-	data->final = malloc((sizeof(int) * j));
-	while (i < j)
+	data->j = wordscount(data->str, ' ');
+	data->final = malloc(sizeof(int) * (data->j));
+	data->stack = malloc(sizeof(int) * (data->j));
+	while (i < data->j)
 	{
 		data->final[i] = ft_atoi(data->tc[i]);
 		printf("%d\n", data->final[i]);
 		i++;
 	}
+	data->stack[0] = 4;
+	data->stack[1] = 99;
+	data->stack[2] = 6;
 	i = 0;
-	j = 0;
-	while (data->final[i])
+	while (i < data->j)
 	{
-		j = fft_strchr(data->final, data->final[i], i);
-		if (j == 0)
+		a = fft_strchr(data->final, data->final[i], i);
+		if (a == 0)
 		{
 			ft_printf("%s\n", "error, duplicated number");
 			exit(0);
 		}
+		i++;
+	}
+	i = 0;
+	printf("%s\n", "eyruigfkhvcybuewgskvsunyretgdscngfuybgt7n834e");
+	data->final = rra(data);
+	while (i < data->j)
+	{
+		ft_printf("%d\n", data->final[i]);
 		i++;
 	}
 	return (data->final);
@@ -46,6 +57,11 @@ int	jawaker(int argc, char **argv)
 			j = 0;
 			while (argv[i][j])
 			{
+				if ((argv[i][j] == '-' && !(argv[i][j + 1] > 47 && argv[i][j + 1] < 58)) || (argv[i][j] == '+' && !(argv[i][j + 1] > 47 && argv[i][j + 1] < 58)))
+				{
+					ft_printf("%s\n", "error, wrong input");
+					exit(0);
+				}
 				if (!((argv[i][j] > 47 && argv[i][j] < 58) || argv
 					[i][j] == ' ' || argv[i][j] == '-' || argv[i][j] == '+'))
 				{

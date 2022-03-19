@@ -22,7 +22,7 @@ int		ft_strncmp(const char *s1, const char *s2);
 
 char	*ft_strdup(const char *s1);
 
-size_t	ft_strlen(const char *s);
+int		ft_strlen(const char *s);
 
 int		fft_strchr(int *s, int c, int j);
 
@@ -31,6 +31,17 @@ typedef struct s_data
 	char	*str;
 	char	**tc;
 	int		*final;
+	int		*stack;
+	int		j;
 }		t_data;
+
+int 	*rrb(t_data *data);
+int 	*rra(t_data *data);
+int 	*ra(t_data *data);
+int		*rb(t_data *data);
+int		*sb(t_data *data);
+int 	*pb(t_data *data);
+int 	*pa(t_data *data);
+int		*sa(t_data *data);
 
 #endif

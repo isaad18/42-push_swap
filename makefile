@@ -7,6 +7,14 @@ ft_strncmp.c\
 ft_strdup.c\
 ft_strlen.c\
 ft_strchr.c\
+sa.c\
+sb.c\
+pa.c\
+pb.c\
+ra.c\
+rb.c\
+rra.c\
+rrb.c
 
 OBJS	= $(RCS:.c=.o)
 

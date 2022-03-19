@@ -1,41 +1,22 @@
 #include"push_swap.h"
 
-int counter(int *s)
+int *ra(t_data *data)
 {
-	int i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
-int *rb(int *ss)
-{
-	int i;
 	int j;
 	int	d;
 	int *c;
+	int	i;
 
-	i = counter(ss);
-	c = malloc(sizeof(int) * i);
-	d = ss[0];
+	c = malloc(sizeof(int) * (data->j));
+	d = data->final[0];
 	i = 0;
 	j = 1;
-	while (ss[j])
+	while (j < data->j)
 	{
-		c[i] = ss[j];
+		c[i] = data->final[j];
 		j++;
 		i++;
 	}
-	c[i] = 0;
-	i = 0;
-	while (ss[j])
-	{
-		ss[i] = c[i];
-		j++;
-		i++;
-	}
-	ss[i] = d;
-	return (ss);
+	c[i] = d;
+	return (c);
 }
