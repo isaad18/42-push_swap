@@ -2,6 +2,14 @@
 #include"push_swap.h"
 int	sort3(t_data *data)
 {
+	int	i;	
+
+	i = 0;
+	if (data->j == 2)
+	{
+		data->final = sa(data);
+		checkstop(data);
+	}
 	if (data->j <= 3)
 	{
 		if (data->final[0] < data->final[1] && data->final[0] < data->final[2])
@@ -76,6 +84,7 @@ int	sort5(t_data *data)
 			data->final = pa(data);
 			return (0);
 		}
+		checkstop(data);
 		data->stack = pb(data);
 		j = 0;
 		i = 0;
@@ -137,7 +146,7 @@ int	sort100(t_data *data)
 		{
 			while (i < data->j)
 			{
-				data->final = rra(data);
+				data->final = rra(data); 
 				i++;
 			}
 			data->stack = pb(data);
@@ -169,13 +178,16 @@ int	sort100(t_data *data)
 
 int	sortshit(t_data *data)
 {
-	int	i;
-
+	if (data->j == 0 || data->j == 1)
+	{
+		write(2, "Error\n", 6);
+		exit (0);
+	}
+	checksort(data);
 	sort3(data);
 	sort5(data);
 	if (data->j > 5)
 		sort100(data);
-	i = 0;
 	return (0);
 }
 
@@ -186,6 +198,11 @@ int	*startshit(t_data *data)
 
 	i = 0;
 	data->j = wordscount(data->str, ' ');
+	if (data->j == 1)
+	{
+		write(2, "Error\n", 6);
+		exit(0);
+	}
 	data->i = 0;
 	data->final = malloc(sizeof(int) * (data->j));
 	data->stack = malloc(sizeof(int) * (data->i));
@@ -200,7 +217,7 @@ int	*startshit(t_data *data)
 		a = fft_strchr(data->final, data->final[i], i);
 		if (a == 0)
 		{
-			ft_printf("%s\n", "error, duplicated number");
+			write(2, "Error\n", 6);
 			exit(0);
 		}
 		i++;
@@ -228,13 +245,13 @@ int	jawaker(int argc, char **argv)
 			{
 				if ((argv[i][j] == '-' && !(argv[i][j + 1] > 47 && argv[i][j + 1] < 58)) || (argv[i][j] == '+' && !(argv[i][j + 1] > 47 && argv[i][j + 1] < 58)))
 				{
-					ft_printf("%s\n", "error, wrong input");
+					write(2, "Error\n", 6);
 					exit(0);
 				}
 				if (!((argv[i][j] > 47 && argv[i][j] < 58) || argv
 					[i][j] == ' ' || argv[i][j] == '-' || argv[i][j] == '+'))
 				{
-					ft_printf("%s\n", "error, wrong input");
+					write(2, "Error\n", 6);
 					exit(0);
 				}
 				j++;
@@ -245,7 +262,7 @@ int	jawaker(int argc, char **argv)
 	}
 	else
 	{
-		ft_printf("%s\n", "error, wrong number of arguements");
+		write(2, "Error\n", 6);
 		exit(0);
 	}
 	c += i - 2;
@@ -283,6 +300,8 @@ int	main(int argc, char **argv)
 			}
 		}
 	}
+	else
+		write(2, "Error\n", 6);
 	data.tc = ft_split(data.str, ' ');
 	startshit(&data);
 }

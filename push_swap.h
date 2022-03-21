@@ -26,6 +26,7 @@ int		ft_strlen(const char *s);
 
 int		fft_strchr(int *s, int c, int j);
 
+
 typedef struct s_data
 {
 	char	*str;
@@ -36,6 +37,7 @@ typedef struct s_data
 	int		i;
 }		t_data;
 
+int		checksort(t_data *data);
 int 	*rrb(t_data *data);
 int 	*rra(t_data *data);
 int 	*ra(t_data *data);
@@ -44,5 +46,6 @@ int		*sb(t_data *data);
 int 	*pb(t_data *data);
 int 	*pa(t_data *data);
 int		*sa(t_data *data);
+int		checkstop(t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 09:52:03 by isaad             #+#    #+#             */
-/*   Updated: 2022/03/18 14:50:33 by isaad            ###   ########.fr       */
+/*   Updated: 2022/03/21 21:41:44 by isaad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ int	ft_atoi(const char *str)
 		check = (check * 10) + (str[i] - '0');
 		if (res != check)
 		{
-			ft_printf("%s\n", "error, out of INT range");
+			write(2, "Error\n", 6);
 			exit(0);
 		}
 		i++;
 	}
 	if (!(str[i] == '\0'))
 	{
-		ft_printf("%s\n", "error, wrong input");
+		write(2, "Error\n", 6);
 		exit(0);
 	}
 	return (res * j);
