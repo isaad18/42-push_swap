@@ -18,5 +18,6 @@ int *rrb(t_data *data)
 		i++;
     }
     c[0] = d;
+    ft_printf("%s\n", "rrb");
 	return (c);
 }

@@ -33,6 +33,7 @@ typedef struct s_data
 	int		*final;
 	int		*stack;
 	int		j;
+	int		i;
 }		t_data;
 
 int 	*rrb(t_data *data);

@@ -18,5 +18,6 @@ int *ra(t_data *data)
 		i++;
 	}
 	c[i] = d;
+	ft_printf("%s\n", "ra");
 	return (c);
 }

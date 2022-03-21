@@ -1,5 +1,183 @@
 
 #include"push_swap.h"
+int	sort3(t_data *data)
+{
+	if (data->j <= 3)
+	{
+		if (data->final[0] < data->final[1] && data->final[0] < data->final[2])
+		{
+			if (data->final[1] > data->final[2])
+			{
+				data->final = sa(data);
+				data->final = ra(data);
+			}
+		}
+		if (data->final[1] < data->final[0] && data->final[1] < data->final[2])
+		{
+			if (data->final[0] < data->final[2])
+				data->final = sa(data);
+			if (data->final[0] > data->final[2])
+				data->final = ra(data);
+		}
+		if (data->final[2] < data->final[0] && data->final[2] < data->final[1])
+		{
+			if (data->final[0] < data->final[1])
+				data->final = rra(data);
+			if (data->final[0] > data->final[1])
+			{
+				data->final = sa(data);
+				data->final = rra(data);
+			}
+		}
+		if (data->final[0] > data->final[1])
+			data->final = sa(data);
+	}
+	return (0);
+}
+
+int	sort5(t_data *data)
+{
+	int	i;
+	int	j;
+
+	j = 1;
+	i = 0;
+	if (data->j > 3 && data->j < 6)
+	{
+		while (j < data->j)
+		{
+			if (data->final[i] > data->final[j])
+			{
+				i++;
+				j = 0;
+			}
+			j++;
+		}
+		if (i > data->j / 2)
+		{
+			while (i < data->j)
+			{
+				data->final = rra(data);
+				i++;
+			}
+		}
+		if (i <= data->j / 2)
+		{
+			while (i)
+			{
+				data->final = ra(data);
+				i--;
+			}
+		}
+		if (data->j == 4)
+		{
+			data->stack = pb(data);
+			sort3(data);
+			data->final = pa(data);
+			return (0);
+		}
+		data->stack = pb(data);
+		j = 0;
+		i = 0;
+		while (j < data->j - 1)
+		{
+			if (data->final[i] < data->final[j])
+			{
+				i++;
+				j = 0;
+			}
+			j++;
+		}
+		if (i > data->j / 2)
+		{
+			while (i < data->j)
+			{
+				data->final = rra(data);
+				i++;
+			}
+		}
+		if (i <= data->j / 2)
+		{
+			while (i)
+			{
+				data->final = ra(data);
+				i--;
+			}
+		}
+		data->stack = pb(data);
+		sort3(data);
+		data->final = pa(data);
+		data->final = ra(data);
+		data->final = pa(data);
+	}
+	return (0);
+}
+
+int	sort100(t_data *data)
+{
+	int	i;
+	int	j;
+	int	c;
+
+	c = 0;
+	i = 0;
+	j = 0;
+	while (data->j)
+	{
+		while (j < data->j)
+		{
+			if (data->final[i] > data->final[j])
+			{
+				i++;
+				j = 0;
+			}
+			j++;
+		}
+		if (i > data->j / 2)
+		{
+			while (i < data->j)
+			{
+				data->final = rra(data);
+				i++;
+			}
+			data->stack = pb(data);
+			c++;
+			i = 0;
+			j = 0;
+		}
+		else if (i <= data->j / 2)
+		{
+			while (i)
+			{
+				data->final = ra(data);
+				i--;
+			}
+			data->stack = pb(data);
+			c++;
+			i = 0;
+			j = 0;
+		}
+	}
+	while(c)
+	{
+		data->final = pa(data);
+		c--;
+	}
+	i = 0;
+	return (0);
+}
+
+int	sortshit(t_data *data)
+{
+	int	i;
+
+	sort3(data);
+	sort5(data);
+	if (data->j > 5)
+		sort100(data);
+	i = 0;
+	return (0);
+}
 
 int	*startshit(t_data *data)
 {
@@ -8,17 +186,14 @@ int	*startshit(t_data *data)
 
 	i = 0;
 	data->j = wordscount(data->str, ' ');
+	data->i = 0;
 	data->final = malloc(sizeof(int) * (data->j));
-	data->stack = malloc(sizeof(int) * (data->j));
+	data->stack = malloc(sizeof(int) * (data->i));
 	while (i < data->j)
 	{
 		data->final[i] = ft_atoi(data->tc[i]);
-		printf("%d\n", data->final[i]);
 		i++;
 	}
-	data->stack[0] = 4;
-	data->stack[1] = 99;
-	data->stack[2] = 6;
 	i = 0;
 	while (i < data->j)
 	{
@@ -31,13 +206,7 @@ int	*startshit(t_data *data)
 		i++;
 	}
 	i = 0;
-	printf("%s\n", "eyruigfkhvcybuewgskvsunyretgdscngfuybgt7n834e");
-	data->final = rra(data);
-	while (i < data->j)
-	{
-		ft_printf("%d\n", data->final[i]);
-		i++;
-	}
+	sortshit(data);
 	return (data->final);
 }
 
@@ -114,7 +283,6 @@ int	main(int argc, char **argv)
 			}
 		}
 	}
-	printf("%s\n", data.str);
 	data.tc = ft_split(data.str, ' ');
 	startshit(&data);
 }
