@@ -2,7 +2,7 @@
 #include"push_swap.h"
 int	sort3(t_data *data)
 {
-	int	i;	
+	int	i;
 
 	i = 0;
 	if (data->j == 2)
@@ -10,7 +10,7 @@ int	sort3(t_data *data)
 		data->final = sa(data);
 		checkstop(data);
 	}
-	if (data->j <= 3)
+	if (data->j == 3)
 	{
 		if (data->final[0] < data->final[1] && data->final[0] < data->final[2])
 		{
@@ -68,6 +68,7 @@ int	sort5(t_data *data)
 				data->final = rra(data);
 				i++;
 			}
+			checkstop(data);
 		}
 		if (i <= data->j / 2)
 		{
@@ -76,13 +77,14 @@ int	sort5(t_data *data)
 				data->final = ra(data);
 				i--;
 			}
+			checkstop(data);
 		}
 		if (data->j == 4)
 		{
 			data->stack = pb(data);
 			sort3(data);
 			data->final = pa(data);
-			return (0);
+			exit (0);
 		}
 		checkstop(data);
 		data->stack = pb(data);
@@ -146,7 +148,7 @@ int	sort100(t_data *data)
 		{
 			while (i < data->j)
 			{
-				data->final = rra(data); 
+				data->final = rra(data);
 				i++;
 			}
 			data->stack = pb(data);
@@ -178,12 +180,11 @@ int	sort100(t_data *data)
 
 int	sortshit(t_data *data)
 {
-	if (data->j == 0 || data->j == 1)
+	if (data->j == 1)
 	{
-		write(2, "Error\n", 6);
 		exit (0);
 	}
-	checksort(data);
+	checkstop(data);
 	sort3(data);
 	sort5(data);
 	if (data->j > 5)
@@ -200,7 +201,6 @@ int	*startshit(t_data *data)
 	data->j = wordscount(data->str, ' ');
 	if (data->j == 1)
 	{
-		write(2, "Error\n", 6);
 		exit(0);
 	}
 	data->i = 0;
@@ -261,10 +261,7 @@ int	jawaker(int argc, char **argv)
 		}
 	}
 	else
-	{
-		write(2, "Error\n", 6);
 		exit(0);
-	}
 	c += i - 2;
 	return (c);
 }
@@ -300,8 +297,6 @@ int	main(int argc, char **argv)
 			}
 		}
 	}
-	else
-		write(2, "Error\n", 6);
 	data.tc = ft_split(data.str, ' ');
 	startshit(&data);
 }
