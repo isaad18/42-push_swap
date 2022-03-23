@@ -1,23 +1,23 @@
 #include"push_swap.h"
 
-int *ra(t_data *data)
+int *rra(t_data *data)
 {
-	int j;
+    int i;
+    int j;
 	int	d;
-	int *c;
-	int	i;
+    int *c;
 
-	c = malloc(sizeof(int) * (data->j));
-	d = data->final[0];
-	i = 0;
-	j = 1;
-	while (j < data->j)
-	{
+    c = malloc(sizeof(int) * data->j);
+    d = data->final[data->j - 1];
+    i = 1;
+    j = 0;
+    while (j < data->j - 1)
+    {
 		c[i] = data->final[j];
 		j++;
 		i++;
-	}
-	c[i] = d;
-	ft_printf("%s\n", "ra");
+    }
+    c[0] = d;
+    ft_printf("%s\n", "rra");
 	return (c);
 }
