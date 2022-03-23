@@ -14,14 +14,6 @@ pb.c\
 ra.c\
 rb.c\
 rra.c\
-rrb.c\
-saa.c\
-sb.c\
-pa.c\
-pb.c\
-ra.c\
-rb.c\
-rra.c\
 rrb.c
 
 OBJS	= $(RCS:.c=.o)
