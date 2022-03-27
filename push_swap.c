@@ -88,7 +88,7 @@ int	sort5(t_data *data)
 		data->stack = pb(data);
 		j = 0;
 		i = 0;
-		while (j < data->j - 1)
+		while (j < data->j)
 		{
 			if (data->final[i] < data->final[j])
 			{
@@ -189,11 +189,13 @@ int	sortshit(t_data *data)
 	sort3(data);
 	sort5(data);
 	if (data->j > 5)
-		sort100(data);
+	{
+		draftsort(data);
+	}
 	i = 0;
 	while (i < data->j)
 	{
-		printf("%d\n", data->final[i]);
+		printf("%d\n", data->test[i]);
 		i++;
 	}
 	return (0);
@@ -214,9 +216,11 @@ int	*startshit(t_data *data)
 	data->i = 0;
 	data->final = malloc(sizeof(int) * (data->j));
 	data->stack = malloc(sizeof(int) * (data->i));
+	data->test = malloc(sizeof(int) * (data->j));
 	while (i < data->j)
 	{
 		data->final[i] = ft_atoi(data->tc[i]);
+		data->test[i] = data->final[i];
 		i++;
 	}
 	i = 0;

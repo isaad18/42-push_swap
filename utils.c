@@ -28,8 +28,7 @@ int	checksort(t_data *data)
 	}
 	if (j == data->j)
 	{
-		write(1, "Error\n", 6);
-		exit(0);
+		return (1);
 	}
 	return (0);
 }
@@ -50,6 +49,39 @@ int	checkstop(t_data *data)
 	if (j == data->j)
 	{
 		exit(0);
+	}
+	return (0);
+}
+
+int	draftsort(t_data *data)
+{
+	int	i;
+	int	d;
+	int	c;
+
+	i = 0;
+	d = 0;
+	c = 0;
+	while (i < data->j)
+	{
+		c = i;
+		while (c < data->j)
+		{
+			if (data->test[i] > data->test[c])
+			{
+				d = data->test[c];
+				data->test[c] = data->test[i];
+				data->test[i] = d;
+			}
+			c++;
+		}
+		if (checksort(data) == 1)
+		{
+			return (0);
+		}
+		else
+			c = 0;
+		i++;
 	}
 	return (0);
 }
