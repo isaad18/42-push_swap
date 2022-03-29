@@ -11,7 +11,7 @@ int *rb(t_data *data)
 	d = data->stack[0];
 	i = 0;
 	j = 1;
-	while (j < data->j)
+	while (j < data->i)
 	{
 		c[i] = data->stack[j];
 		j++;

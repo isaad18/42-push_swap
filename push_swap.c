@@ -2,7 +2,7 @@
 #include"push_swap.h"
 int	sort3(t_data *data)
 {
-	int	i;	
+	int	i;
 
 	i = 0;
 	if (data->j == 2)
@@ -146,7 +146,7 @@ int	sort100(t_data *data)
 		{
 			while (i < data->j)
 			{
-				data->final = rra(data); 
+				data->final = rra(data);
 				i++;
 			}
 			data->stack = pb(data);
@@ -176,6 +176,134 @@ int	sort100(t_data *data)
 	return (0);
 }
 
+int	findstart(t_data *data, int	x)
+{
+	int	i;
+	int	j;
+
+	i = x;
+	j = 0;
+	if (i > data->j / 2)
+	{
+		while (i < data->j)
+		{
+			data->final = rra(data);
+			i++;
+		}
+	}
+	else if (i <= data->j / 2)
+	{
+		while (i)
+		{
+			data->final = ra(data);
+			i--;
+		}
+	}
+	i = 0;
+	j = 0;
+	while (data->final[x] < data->stack[i])
+		i++;
+	if (data->i == 0)
+	{
+		data->stack = pb(data);
+		return (0);
+	}
+	else if (i > data->i / 2)
+	{
+		while (i < data->i)
+		{
+			data->stack = rrb(data);
+			i++;
+			j++;
+		}
+	}
+	else if (i <= data->i / 2)
+	{
+		while (i)
+		{
+			data->stack = rb(data);
+			i--;
+			j++;
+		}
+	}
+	data->stack = pb(data);
+	while (j)
+	{
+		if (i == 0)
+			data->stack = rrb(data);
+		if (i > 0)
+			data->stack = rb(data);
+		j--;
+	}
+	return (0);
+}
+
+int	actual100(t_data *data)
+{
+	int	j;
+	int	i;
+	int	x;
+	int	y;
+	int	d;
+	int	c;
+
+	i = 10;
+	j = 0;
+	c = 0;
+	x = 0;
+	y = 0;
+	d = 0;
+	while (i < data->j)
+	{
+		j = data->test[i];
+		c = data->j;
+		while (d < 10)
+		{
+			while (c && data->final[x])
+			{
+				if (data->final[x] < j)
+				{
+					findstart(data, x);
+					d++;
+				}
+				else if (data->final[c] < j)
+				{
+					findstart(data, c);
+					d++;
+				}
+				c--;
+				x++;
+			}
+		}
+		i += 10;
+	}
+	j = 0;
+	if (i - 10 != data->j)
+	{
+		i -= 10;
+		while (data->j)
+		{
+			i = 0;
+			while (j < data->j)
+			{
+				if (data->final[i] > data->final[j])
+				{
+					i++;
+					j = 0;
+				}
+				j++;
+			}
+			findstart(data, i);
+		}
+	}
+	while (data->i)
+	{
+		data->stack = rrb(data);
+		data->final = pa(data);
+	}
+	return (0);
+}
+
 int	sortshit(t_data *data)
 {
 	int	i;
@@ -191,11 +319,12 @@ int	sortshit(t_data *data)
 	if (data->j > 5)
 	{
 		draftsort(data);
+		actual100(data);
 	}
 	i = 0;
 	while (i < data->j)
 	{
-		printf("%d\n", data->test[i]);
+		printf("%d\n", data->final[i]);
 		i++;
 	}
 	return (0);

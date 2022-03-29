@@ -49,5 +49,6 @@ int 	*pa(t_data *data);
 int		*sa(t_data *data);
 int		checkstop(t_data *data);
 int		draftsort(t_data *data);
+int		actual100(t_data *data);
 
 #endif
