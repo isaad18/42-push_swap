@@ -145,6 +145,50 @@ int	pushit(t_data *data, int i)
 	return (0);
 }
 
+int	sendback(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (data->i)
+	{
+		while (j < data->i)
+		{
+			if (data->stack[i] < data->stack[j])
+			{
+				i++;
+				j = 0;
+			}
+			j++;
+		}
+		if (i > data->i / 2)
+		{
+			while (i < data->i)
+			{
+				data->stack = rrb(data);
+				i++;
+			}
+			data->final = pa(data);
+			i = 0;
+			j = 0;
+		}
+		else if (i <= data->i / 2)
+		{
+			while (i)
+			{
+				data->stack = rb(data);
+				i--;
+			}
+			data->final = pa(data);
+			i = 0;
+			j = 0;
+		}
+	}
+	return (0);
+}
+
 int	make100(t_data *data)
 {
 	int	n;
@@ -157,12 +201,14 @@ int	make100(t_data *data)
 	j = data->j;
 	n = data->j;
 	if (n <= 100)
-		n /= 5;
+		n /= 6;
 	d = n;
 	z = data->j;
 	while (n <= z)
 	{
-		while (i < data->j && j > 0)
+		if (n == z)
+			n = n - 1;
+		while (i < data->j && j >= 0)
 		{
 			if (data->final[i] <= data->test[n])
 			{
@@ -179,7 +225,7 @@ int	make100(t_data *data)
 			i++;
 			j--;
 		}
-		n += n;
+		n += d;
 		i = 0;
 		j = data->j;
 	}
@@ -201,6 +247,7 @@ int	sortshit(t_data *data)
 	sort5(data);
 	if (data->j > 5)
 		make100(data);
+	sendback(data);
 	i = 0;
 	while (i < data->j)
 	{
@@ -235,7 +282,7 @@ int	*startshit(t_data *data)
 	i = 0;
 	while (i < data->j)
 	{
-		a = fft_strchr(data->final, data->final[i], i);
+		a = fft_strchr(data->final, data->final[i], i, data);
 		if (a == 0)
 		{
 			write(2, "Error\n", 6);

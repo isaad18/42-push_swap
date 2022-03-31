@@ -7,7 +7,7 @@ int *rrb(t_data *data)
 	int	d;
 	int *c;
 
-	c = malloc(sizeof(int) * data->j);
+	c = malloc(sizeof(int) * data->i);
 	d = data->stack[data->i - 1];
 	i = 1;
 	j = 0;

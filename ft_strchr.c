@@ -6,18 +6,18 @@
 /*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 10:14:51 by isaad             #+#    #+#             */
-/*   Updated: 2021/12/27 14:30:47 by isaad            ###   ########.fr       */
+/*   Updated: 2022/04/01 01:54:28 by isaad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	fft_strchr(int *s, int c, int j)
+int	fft_strchr(int *s, int c, int j, t_data *data)
 {
 	int	i;
 
 	i = j + 1;
-	while (s[i])
+	while (i < data->j)
 	{
 		if (s[i] == c)
 			return (0);
