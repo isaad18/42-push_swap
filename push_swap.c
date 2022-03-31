@@ -122,67 +122,8 @@ int	sort5(t_data *data)
 	return (0);
 }
 
-int	sort100(t_data *data)
+int	pushit(t_data *data, int i)
 {
-	int	i;
-	int	j;
-	int	c;
-
-	c = 0;
-	i = 0;
-	j = 0;
-	while (data->j)
-	{
-		while (j < data->j)
-		{
-			if (data->final[i] > data->final[j])
-			{
-				i++;
-				j = 0;
-			}
-			j++;
-		}
-		if (i > data->j / 2)
-		{
-			while (i < data->j)
-			{
-				data->final = rra(data);
-				i++;
-			}
-			data->stack = pb(data);
-			c++;
-			i = 0;
-			j = 0;
-		}
-		else if (i <= data->j / 2)
-		{
-			while (i)
-			{
-				data->final = ra(data);
-				i--;
-			}
-			data->stack = pb(data);
-			c++;
-			i = 0;
-			j = 0;
-		}
-	}
-	while(c)
-	{
-		data->final = pa(data);
-		c--;
-	}
-	i = 0;
-	return (0);
-}
-
-int	findstart(t_data *data, int	x)
-{
-	int	i;
-	int	j;
-
-	i = x;
-	j = 0;
 	if (i > data->j / 2)
 	{
 		while (i < data->j)
@@ -190,6 +131,7 @@ int	findstart(t_data *data, int	x)
 			data->final = rra(data);
 			i++;
 		}
+		data->stack = pb(data);
 	}
 	else if (i <= data->j / 2)
 	{
@@ -198,108 +140,48 @@ int	findstart(t_data *data, int	x)
 			data->final = ra(data);
 			i--;
 		}
-	}
-	i = 0;
-	j = 0;
-	while (data->final[x] < data->stack[i])
-		i++;
-	if (data->i == 0)
-	{
 		data->stack = pb(data);
-		return (0);
-	}
-	else if (i > data->i / 2)
-	{
-		while (i < data->i)
-		{
-			data->stack = rrb(data);
-			i++;
-			j++;
-		}
-	}
-	else if (i <= data->i / 2)
-	{
-		while (i)
-		{
-			data->stack = rb(data);
-			i--;
-			j++;
-		}
-	}
-	data->stack = pb(data);
-	while (j)
-	{
-		if (i == 0)
-			data->stack = rrb(data);
-		if (i > 0)
-			data->stack = rb(data);
-		j--;
 	}
 	return (0);
 }
 
-int	actual100(t_data *data)
+int	make100(t_data *data)
 {
-	int	j;
+	int	n;
 	int	i;
-	int	x;
-	int	y;
+	int	j;
 	int	d;
-	int	c;
+	int	z;
 
-	i = 10;
-	j = 0;
-	c = 0;
-	x = 0;
-	y = 0;
-	d = 0;
-	while (i < data->j)
+	i = 0;
+	j = data->j;
+	n = data->j;
+	if (n <= 100)
+		n /= 5;
+	d = n;
+	z = data->j;
+	while (n <= z)
 	{
-		j = data->test[i];
-		c = data->j;
-		while (d < 10)
+		while (i < data->j && j > 0)
 		{
-			while (c && data->final[x])
+			if (data->final[i] <= data->test[n])
 			{
-				if (data->final[x] < j)
-				{
-					findstart(data, x);
-					d++;
-				}
-				else if (data->final[c] < j)
-				{
-					findstart(data, c);
-					d++;
-				}
-				c--;
-				x++;
+				pushit(data, i);
+				i = 0;
+				j = data->j;
 			}
-		}
-		i += 10;
-	}
-	j = 0;
-	if (i - 10 != data->j)
-	{
-		i -= 10;
-		while (data->j)
-		{
-			i = 0;
-			while (j < data->j)
+			if (data->final[j] <= data->test[n])
 			{
-				if (data->final[i] > data->final[j])
-				{
-					i++;
-					j = 0;
-				}
-				j++;
+				pushit(data, j);
+				i = 0;
+				j = data->j;
 			}
-			findstart(data, i);
+			i++;
+			j--;
 		}
-	}
-	while (data->i)
-	{
-		data->stack = rrb(data);
-		data->final = pa(data);
+		n += n;
+		i = 0;
+		j = data->j;
 	}
 	return (0);
 }
@@ -314,13 +196,11 @@ int	sortshit(t_data *data)
 		exit (0);
 	}
 	checksort(data);
+	draftsort(data);
 	sort3(data);
 	sort5(data);
 	if (data->j > 5)
-	{
-		draftsort(data);
-		actual100(data);
-	}
+		make100(data);
 	i = 0;
 	while (i < data->j)
 	{
