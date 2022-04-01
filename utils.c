@@ -28,7 +28,7 @@ int	checksort(t_data *data)
 	}
 	if (j == data->j)
 	{
-		return (1);
+		exit(0);
 	}
 	return (0);
 }

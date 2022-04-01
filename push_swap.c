@@ -240,7 +240,6 @@ int	sortshit(t_data *data)
 
 	if (data->j == 0 || data->j == 1)
 	{
-		write(2, "Error\n", 6);
 		exit (0);
 	}
 	checksort(data);
