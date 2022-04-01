@@ -238,10 +238,6 @@ int	sortshit(t_data *data)
 {
 	int	i;
 
-	if (data->j == 0 || data->j == 1)
-	{
-		exit (0);
-	}
 	checksort(data);
 	draftsort(data);
 	sort3(data);
@@ -265,9 +261,12 @@ int	*startshit(t_data *data)
 
 	i = 0;
 	data->j = wordscount(data->str, ' ');
+	if (data->j == 0)
+	{
+		exit (0);
+	}
 	if (data->j == 1)
 	{
-		write(2, "Error\n", 6);
 		exit(0);
 	}
 	data->i = 0;
