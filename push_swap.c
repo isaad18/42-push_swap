@@ -202,12 +202,14 @@ int	make100(t_data *data)
 	n = data->j;
 	if (n <= 100)
 		n /= 6;
+	if (n > 100)
+		n /= 10;
 	d = n;
 	z = data->j;
-	while (n <= z)
+	while (data->j)
 	{
-		if (n == z)
-			n = n - 1;
+		if (n >= z)
+			n = z - 1;
 		while (i < data->j && j >= 0)
 		{
 			if (data->final[i] <= data->test[n])
@@ -216,7 +218,7 @@ int	make100(t_data *data)
 				i = 0;
 				j = data->j;
 			}
-			if (data->final[j] <= data->test[n])
+			else if (data->final[j] <= data->test[n])
 			{
 				pushit(data, j);
 				i = 0;
@@ -249,11 +251,11 @@ int	sortshit(t_data *data)
 		make100(data);
 	sendback(data);
 	i = 0;
-	while (i < data->j)
-	{
-		printf("%d\n", data->final[i]);
-		i++;
-	}
+	// while (i < data->j)
+	// {
+	// 	printf("%d\n", data->final[i]);
+	// 	i++;
+	// }
 	return (0);
 }
 
@@ -271,7 +273,7 @@ int	*startshit(t_data *data)
 	}
 	data->i = 0;
 	data->final = malloc(sizeof(int) * (data->j));
-	data->stack = malloc(sizeof(int) * (data->i));
+	data->stack = malloc(sizeof(int) * (data->j));
 	data->test = malloc(sizeof(int) * (data->j));
 	while (i < data->j)
 	{
