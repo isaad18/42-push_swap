@@ -235,8 +235,6 @@ int	make100(t_data *data)
 
 int	sortshit(t_data *data)
 {
-	int	i;
-
 	checksort(data);
 	if (data->j <= 3)
 	{
@@ -252,7 +250,6 @@ int	sortshit(t_data *data)
 		sendback(data);
 		freeextra(data);
 	}
-	i = 0;
 	return (0);
 }
 
@@ -290,7 +287,10 @@ int	*startshit(t_data *data)
 		if (a == 0)
 		{
 			write(2, "Error\n", 6);
-			freeall(data);
+			if (data->j < 4)
+				freeall(data);
+			else
+				freeextra(data);
 			exit(0);
 		}
 		i++;

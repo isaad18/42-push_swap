@@ -28,6 +28,10 @@ int	checksort(t_data *data)
 	}
 	if (j == data->j)
 	{
+		if (data->j < 4)
+			freeall(data);
+		else
+			freeextra(data);
 		exit(0);
 	}
 	return (0);
