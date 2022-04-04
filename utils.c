@@ -13,6 +13,7 @@ int	ft_strchr(int *s, int c, int i)
 		return (s[i]);
 	return (0);
 }
+
 int	checksort(t_data *data)
 {
 	int	i;
@@ -58,6 +59,16 @@ int	checkstop(t_data *data)
 	return (0);
 }
 
+void	ft_swap(t_data *data, int i, int c, int d)
+{
+	if (data->test[i] > data->test[c])
+	{
+		d = data->test[c];
+		data->test[c] = data->test[i];
+		data->test[i] = d;
+	}
+}
+
 int	draftsort(t_data *data)
 {
 	int	i;
@@ -72,12 +83,7 @@ int	draftsort(t_data *data)
 		c = i;
 		while (c < data->j)
 		{
-			if (data->test[i] > data->test[c])
-			{
-				d = data->test[c];
-				data->test[c] = data->test[i];
-				data->test[i] = d;
-			}
+			ft_swap(data, i, c, d);
 			c++;
 		}
 		if (checksort(data) == 1)

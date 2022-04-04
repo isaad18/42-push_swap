@@ -1,27 +1,7 @@
 #include"push_swap.h"
 
-int *pa(t_data *data)
+void	yalla(t_data *data, int i, int j, int *c)
 {
-	int	i;
-	int	*s;
-	int	j;
-	int	*c;
-
-	i = 0;
-	c = malloc((sizeof(int) * (data->i)));
-	s = malloc((sizeof(int) * (data->j + 2)));
-	data->j += 1;
-	s[i] = data->stack[i];
-	i++;
-	j = 0;
-	while (j < data->j)
-	{
-		s[i] = data->final[j];
-		i++;
-		j++;
-	}
-	i = 0;
-	j = 1;
 	while (j < data->i)
 	{
 		c[i] = data->stack[j];
@@ -34,6 +14,37 @@ int *pa(t_data *data)
 		data->stack[i] = c[i];
 		i++;
 	}
+}
+
+int	*hh(t_data *data, int i, int j, int *s)
+{
+	s[i] = data->stack[i];
+	i++;
+	while (j < data->j)
+	{
+		s[i] = data->final[j];
+		i++;
+		j++;
+	}
+	return (s);
+}
+
+int *pa(t_data *data)
+{
+	int	i;
+	int	*s;
+	int	j;
+	int	*c;
+
+	i = 0;
+	c = malloc((sizeof(int) * (data->i)));
+	s = malloc((sizeof(int) * (data->j + 2)));
+	data->j += 1;
+	j = 0;
+	s = hh(data, i, j, s);
+	i = 0;
+	j = 1;
+	yalla(data, i, j, c);
 	i = 0;
 	data->i -= 1;
 	free(c);

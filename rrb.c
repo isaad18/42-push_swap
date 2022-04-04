@@ -1,9 +1,9 @@
 #include"push_swap.h"
 
-int *rrb(t_data *data)
+int	*rrb(t_data *data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = data->i - 1;
 	while (i)

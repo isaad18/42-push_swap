@@ -1,9 +1,9 @@
 #include"push_swap.h"
 
-int *rra(t_data *data)
+int	*rra(t_data *data)
 {
-    int i;
-    int j;
+	int	i;
+	int	j;
 
 	i = data->j - 1;
 	while (i)
@@ -13,6 +13,6 @@ int *rra(t_data *data)
 		data->final[i - 1] = j;
 		i--;
 	}
-    ft_printf("%s\n", "rra");
+	ft_printf("%s\n", "rra");
 	return (data->final);
 }

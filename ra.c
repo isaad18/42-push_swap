@@ -1,8 +1,8 @@
 #include"push_swap.h"
 
-int *ra(t_data *data)
+int	*ra(t_data *data)
 {
-	int j;
+	int	j;
 	int	i;
 
 	i = 0;
