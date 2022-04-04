@@ -4,20 +4,15 @@ int *rrb(t_data *data)
 {
 	int i;
 	int j;
-	int	d;
-	int *c;
 
-	c = malloc(sizeof(int) * data->i);
-	d = data->stack[data->i - 1];
-	i = 1;
-	j = 0;
-	while (j < data->i - 1)
+	i = data->i - 1;
+	while (i)
 	{
-		c[i] = data->stack[j];
-		j++;
-		i++;
+		j = data->stack[i];
+		data->stack[i] = data->stack[i - 1];
+		data->stack[i - 1] = j;
+		i--;
 	}
-	c[0] = d;
 	ft_printf("%s\n", "rrb");
-	return (c);
+	return (data->stack);
 }

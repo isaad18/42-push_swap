@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isaad <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 09:42:18 by isaad             #+#    #+#             */
-/*   Updated: 2022/01/30 09:42:23 by isaad            ###   ########.fr       */
+/*   Updated: 2022/04/04 07:21:37 by isaad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ int		ft_putchar_fd(char c, int fd);
 int		printhexa(unsigned int a, char format);
 
 int		printptr(unsigned long int num);
-
-int		ft_atoi(const char *str);
 
 int		ft_printf(const char *str, ...);
 

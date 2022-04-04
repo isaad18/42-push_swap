@@ -6,18 +6,32 @@
 /*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 09:52:03 by isaad             #+#    #+#             */
-/*   Updated: 2022/03/21 21:41:44 by isaad            ###   ########.fr       */
+/*   Updated: 2022/04/04 07:23:01 by isaad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_atoi(const char *str)
+void	freeall(t_data *data)
+{
+	free (data->final);
+	free (data->stack);
+	free (data->test);
+}
+
+void	freeextra(t_data *data)
+{
+	free (data->final);
+	free (data->stack);
+	free (data->test);
+}
+
+int	ft_atoi(const char *str, t_data *data)
 {
 	int				i;
-	int				res;
 	int				j;
 	long long int	check;
+	int				res;
 
 	j = 1;
 	i = 0;
@@ -36,14 +50,10 @@ int	ft_atoi(const char *str)
 		if (res != check)
 		{
 			write(2, "Error\n", 6);
+			freeall(data);
 			exit(0);
 		}
 		i++;
-	}
-	if (!(str[i] == '\0'))
-	{
-		write(2, "Error\n", 6);
-		exit(0);
 	}
 	return (res * j);
 }

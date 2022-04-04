@@ -3,21 +3,16 @@
 int *rb(t_data *data)
 {
 	int j;
-	int	d;
-	int *c;
 	int	i;
 
-	c = malloc(sizeof(int) * (data->i));
-	d = data->stack[0];
 	i = 0;
-	j = 1;
-	while (j < data->i)
+	while (i < data->i - 1)
 	{
-		c[i] = data->stack[j];
-		j++;
+		j = data->stack[i];
+		data->stack[i] = data->stack[i + 1];
+		data->stack[i + 1] = j;
 		i++;
 	}
-	c[i] = d;
 	ft_printf("%s\n", "rb");
-	return (c);
+	return (data->stack);
 }

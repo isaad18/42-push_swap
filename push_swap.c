@@ -246,11 +246,11 @@ int	sortshit(t_data *data)
 		make100(data);
 	sendback(data);
 	i = 0;
-	// while (i < data->j)
-	// {
-	// 	printf("%d\n", data->final[i]);
-	// 	i++;
-	// }
+	while (i < data->j)
+	{
+		printf("%d\n", data->final[i]);
+		i++;
+	}
 	return (0);
 }
 
@@ -275,7 +275,7 @@ int	*startshit(t_data *data)
 	data->test = malloc(sizeof(int) * (data->j));
 	while (i < data->j)
 	{
-		data->final[i] = ft_atoi(data->tc[i]);
+		data->final[i] = ft_atoi(data->tc[i], data);
 		data->test[i] = data->final[i];
 		i++;
 	}
@@ -311,6 +311,11 @@ int	jawaker(int argc, char **argv)
 			j = 0;
 			while (argv[i][j])
 			{
+				if ((argv[i][j] > 47 && argv[i][j] < 58) && (argv[i][j + 1] == '-' || argv[i][j + 1] == '+'))
+				{
+					write(2, "Error\n", 6);
+					exit(0);
+				}
 				if ((argv[i][j] == '-' && !(argv[i][j + 1] > 47 && argv[i][j + 1] < 58)) || (argv[i][j] == '+' && !(argv[i][j + 1] > 47 && argv[i][j + 1] < 58)))
 				{
 					write(2, "Error\n", 6);
@@ -370,6 +375,6 @@ int	main(int argc, char **argv)
 	}
 	else
 		write(2, "Error\n", 6);
-	data.tc = ft_split(data.str, ' ');
+	data.tc = ft_split(data.str, ' ', &data);
 	startshit(&data);
 }

@@ -6,9 +6,11 @@
 /*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 08:19:12 by isaad             #+#    #+#             */
-/*   Updated: 2022/03/15 09:25:31 by isaad            ###   ########.fr       */
+/*   Updated: 2022/04/04 07:30:44 by isaad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include"push_swap.h"
 
 #include"push_swap.h"
 
@@ -35,25 +37,24 @@ int	wordscount(char const *s, char c)
 	return (words);
 }
 
-char	*wordscut(char const *s, int len, int start)
+char	*wordscut(char const *s, int len, int start, t_data *data)
 {
-	char	*c;
 	int		i;
 
 	i = 0;
-	c = (char *)malloc(len + 1);
-	if (!c)
+	data->cc = (char *)malloc(len + 1);
+	if (!data->cc)
 		return (0);
 	while (len > 0)
 	{
-		c[i++] = s[start - len];
+		data->cc[i++] = s[start - len];
 		len--;
 	}
-	c[i] = '\0';
-	return (c);
+	data->cc[i] = '\0';
+	return (data->cc);
 }
 
-void	wordsplit(char **strs, char c, char const *s, int words)
+void	wordsplit(t_data *data, char c, char const *s)
 {
 	int	i;
 	int	strl;
@@ -62,30 +63,27 @@ void	wordsplit(char **strs, char c, char const *s, int words)
 	i = 0;
 	word = 0;
 	strl = 0;
-	while (word < words)
+	while (word < data->words)
 	{
 		while (s[i] && s[i] == c)
 			++i;
 		while (s[i] != c && s[i])
 			if (i++ >= 0)
 				strl++;
-		strs[word++] = wordscut(s, strl, i);
+		data->tc[word++] = wordscut(s, strl, i, data);
 		strl = 0;
 	}
-	strs[word] = 0;
+	data->tc[word] = 0;
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c, t_data *data)
 {
-	char	**a;
-	int		words;
-
 	if (!s)
 		return (0);
-	words = wordscount(s, c);
-	a = (char **)malloc((words + 1) * sizeof(char *));
-	if (!a)
+	data->words = wordscount(s, c);
+	data->tc = (char **)malloc((data->words + 1) * sizeof(char *));
+	if (!data->tc)
 		return (0);
-	wordsplit(a, c, s, words);
-	return (a);
+	wordsplit(data, c, s);
+	return (data->tc);
 }

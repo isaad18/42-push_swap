@@ -3,21 +3,16 @@
 int *ra(t_data *data)
 {
 	int j;
-	int	d;
-	int *c;
 	int	i;
 
-	c = malloc(sizeof(int) * (data->j));
-	d = data->final[0];
 	i = 0;
-	j = 1;
-	while (j < data->j)
+	while (i < data->j - 1)
 	{
-		c[i] = data->final[j];
-		j++;
+		j = data->final[i];
+		data->final[i] = data->final[i + 1];
+		data->final[i + 1] = j;
 		i++;
 	}
-	c[i] = d;
 	ft_printf("%s\n", "ra");
-	return (c);
+	return (data->final);
 }

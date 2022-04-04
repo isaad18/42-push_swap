@@ -1,4 +1,5 @@
 #include"push_swap.h"
+
 int *pb(t_data *data)
 {
 	int	i;
