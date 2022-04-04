@@ -36,6 +36,13 @@ int *pa(t_data *data)
 	}
 	i = 0;
 	data->i -= 1;
+	free(c);
+	while (i < data->j)
+	{
+		data->final[i] = s[i];
+		i++;
+	}
+	free (s);
 	ft_printf("%s\n", "pa");
-	return (s);
+	return (data->final);
 }

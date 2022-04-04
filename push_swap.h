@@ -50,6 +50,8 @@ int		*sa(t_data *data);
 int		checkstop(t_data *data);
 int		draftsort(t_data *data);
 int		actual100(t_data *data);
+void	freeall(t_data *data);
+void	freeextra(t_data *data);
 int		fft_strchr(int *s, int c, int j, t_data *data);
 char	**ft_split(char const *s, char c, t_data *data);
 int		ft_atoi(const char *str, t_data *data);

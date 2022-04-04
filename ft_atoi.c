@@ -6,7 +6,7 @@
 /*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 09:52:03 by isaad             #+#    #+#             */
-/*   Updated: 2022/04/04 07:23:01 by isaad            ###   ########.fr       */
+/*   Updated: 2022/04/04 13:45:08 by isaad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	freeall(t_data *data)
 {
 	free (data->final);
-	free (data->stack);
 	free (data->test);
 }
 

@@ -36,6 +36,13 @@ int *pb(t_data *data)
 	}
 	i = 0;
 	data->j -= 1;
+	free(c);
+	while (i < data->i)
+	{
+		data->stack[i] = s[i];
+		i++;
+	}
+	free (s);
 	ft_printf("%s\n", "pb");
-	return (s);
+	return (data->stack);
 }

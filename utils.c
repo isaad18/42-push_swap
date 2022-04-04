@@ -20,7 +20,7 @@ int	checksort(t_data *data)
 
 	i = 0;
 	j = 1;
-	while (i < data->j)
+	while (i < data->j - 1)
 	{
 		if (data->final[i] < data->final[i + 1])
 			j++;
@@ -48,6 +48,7 @@ int	checkstop(t_data *data)
 	}
 	if (j == data->j)
 	{
+		freeall(data);
 		exit(0);
 	}
 	return (0);

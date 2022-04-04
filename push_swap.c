@@ -2,12 +2,9 @@
 #include"push_swap.h"
 int	sort3(t_data *data)
 {
-	int	i;
-
-	i = 0;
 	if (data->j == 2)
 	{
-		data->final = sa(data);
+		sa(data);
 		checkstop(data);
 	}
 	if (data->j <= 3)
@@ -82,6 +79,7 @@ int	sort5(t_data *data)
 			data->stack = pb(data);
 			sort3(data);
 			data->final = pa(data);
+			freeextra(data);
 			return (0);
 		}
 		checkstop(data);
@@ -118,6 +116,7 @@ int	sort5(t_data *data)
 		data->final = pa(data);
 		data->final = ra(data);
 		data->final = pa(data);
+		freeextra(data);
 	}
 	return (0);
 }
@@ -239,18 +238,21 @@ int	sortshit(t_data *data)
 	int	i;
 
 	checksort(data);
-	draftsort(data);
-	sort3(data);
-	sort5(data);
-	if (data->j > 5)
-		make100(data);
-	sendback(data);
-	i = 0;
-	while (i < data->j)
+	if (data->j <= 3)
 	{
-		printf("%d\n", data->final[i]);
-		i++;
+		sort3(data);
+		freeall(data);
 	}
+	if (data->j > 3 && data->j < 6)
+		sort5(data);
+	if (data->j > 5)
+	{
+		draftsort(data);
+		make100(data);
+		sendback(data);
+		freeextra(data);
+	}
+	i = 0;
 	return (0);
 }
 
@@ -261,24 +263,26 @@ int	*startshit(t_data *data)
 
 	i = 0;
 	data->j = wordscount(data->str, ' ');
-	if (data->j == 0)
-	{
-		exit (0);
-	}
+	free(data->str);
 	if (data->j == 1)
 	{
+		free(data->tc[0]);
+		free (data->tc);
 		exit(0);
 	}
 	data->i = 0;
+	if (data->j > 3)
+		data->stack = malloc(sizeof(int) * (data->j));
 	data->final = malloc(sizeof(int) * (data->j));
-	data->stack = malloc(sizeof(int) * (data->j));
 	data->test = malloc(sizeof(int) * (data->j));
 	while (i < data->j)
 	{
 		data->final[i] = ft_atoi(data->tc[i], data);
 		data->test[i] = data->final[i];
+		free(data->tc[i]);
 		i++;
 	}
+	free (data->tc);
 	i = 0;
 	while (i < data->j)
 	{
@@ -286,6 +290,7 @@ int	*startshit(t_data *data)
 		if (a == 0)
 		{
 			write(2, "Error\n", 6);
+			freeall(data);
 			exit(0);
 		}
 		i++;
