@@ -20,6 +20,7 @@ typedef struct s_data
 	int		*c;
 	int		j;
 	int		i;
+	int		z;
 }		t_data;
 
 void	giveerror(void);

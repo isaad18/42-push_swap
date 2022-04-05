@@ -69,6 +69,7 @@ void	startshit(t_data *data)
 		data->test[i] = data->final[i];
 		free(data->tc[i]);
 		i++;
+		data->z++;
 	}
 	free (data->tc);
 	duplicates(data);
@@ -110,6 +111,7 @@ int	main(int argc, char **argv)
 	int		j;
 
 	j = jawaker(argc, argv);
+	data.z = 0;
 	data.str = (char *)malloc(j + 1);
 	data.str[j] = 0;
 	if (argc > 1)

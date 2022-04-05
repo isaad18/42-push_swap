@@ -6,7 +6,7 @@
 /*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 09:52:03 by isaad             #+#    #+#             */
-/*   Updated: 2022/04/05 00:27:04 by isaad            ###   ########.fr       */
+/*   Updated: 2022/04/05 11:33:42 by isaad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,17 @@ void	freeextra(t_data *data)
 void	exitt(t_data *data)
 {
 	write(2, "Error\n", 6);
-	freeall(data);
-	exit(0);
+	if (data->j <= 3)
+		freeall(data);
+	else
+		freeextra(data);
+	while (data->z < data->j)
+	{
+		free(data->tc[data->z]);
+		data->z++;
+	}
+	free(data->tc);
+	exit(-1);
 }
 
 int	ft_atoi(const char *str, t_data *data)
@@ -53,7 +62,7 @@ int	ft_atoi(const char *str, t_data *data)
 		check = res;
 		res = (res * 10) + (str[i] - '0');
 		check = (check * 10) + (str[i] - '0');
-		if ((res != check && res * j != -2147483648) || (check > INT_MAX))
+		if (res != check && (check > 2147483647 || check < -2147483648))
 			exitt(data);
 		i++;
 	}
