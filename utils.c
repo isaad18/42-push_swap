@@ -59,6 +59,28 @@ int	checkstop(t_data *data)
 	return (0);
 }
 
+int	checkstopfor5(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 1;
+	while (i < data->j)
+	{
+		if (data->final[i] < data->final[i + 1])
+			j++;
+		i++;
+	}
+	if (j == data->j)
+	{
+		freeextra(data);
+		// free(data->stack);
+		exit(0);
+	}
+	return (0);
+}
+
 void	ft_swap(t_data *data, int i, int c, int d)
 {
 	if (data->test[i] > data->test[c])

@@ -68,7 +68,7 @@ int	sort5(t_data *data)
 	{
 		helper5(data);
 		helper4(data);
-		checkstop(data);
+		checkstopfor5(data);
 		data->stack = pb(data);
 		helper5x1(data);
 		data->stack = pb(data);

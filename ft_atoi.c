@@ -6,7 +6,7 @@
 /*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 09:52:03 by isaad             #+#    #+#             */
-/*   Updated: 2022/04/05 11:33:42 by isaad            ###   ########.fr       */
+/*   Updated: 2022/04/06 11:15:24 by isaad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	ft_atoi(const char *str, t_data *data)
 		check = res;
 		res = (res * 10) + (str[i] - '0');
 		check = (check * 10) + (str[i] - '0');
-		if (res != check && (check > 2147483647 || check < -2147483648))
+		if (((check > 2147483647) && j == 1) || ((check > 2147483648) && j == -1))
 			exitt(data);
 		i++;
 	}

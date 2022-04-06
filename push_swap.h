@@ -48,6 +48,7 @@ void	duplicates(t_data *data);
 void	helper5(t_data *data);
 int		pushit(t_data *data, int i);
 void	helper5x1(t_data *data);
+int		checkstopfor5(t_data *data);
 int		fft_strchr(int *s, int c, int j, t_data *data);
 char	**ft_split(char const *s, char c, t_data *data);
 void	helper100(t_data *data, int i, int j, int n);
