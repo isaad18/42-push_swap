@@ -20,6 +20,8 @@ for4.c\
 for5.c\
 for100.c\
 for100x1.c\
+ft_calloc.c\
+ft_bzero.c
 
 OBJS	= $(RCS:.c=.o)
 

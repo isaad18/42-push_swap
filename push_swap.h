@@ -40,6 +40,8 @@ void	helper3(t_data *data);
 int		checkstop(t_data *data);
 int		draftsort(t_data *data);
 int		actual100(t_data *data);
+void	ft_bzero(void *s, size_t n);
+void	*ft_calloc(size_t count, size_t size);
 void	freeall(t_data *data);
 int		sort5(t_data *data);
 void	helper4(t_data *data);

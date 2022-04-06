@@ -49,12 +49,6 @@ void	checkinput(char **argv, int i, int j)
 	}
 }
 
-void	giveerror(void)
-{
-	write(2, "Error\n", 6);
-	exit(0);
-}
-
 void	duplicates(t_data *data)
 {
 	int	i;

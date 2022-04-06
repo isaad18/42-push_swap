@@ -64,9 +64,9 @@ void	startshit(t_data *data)
 	// data->final = malloc(sizeof(int) * (data->j));
 	// data->test = malloc(sizeof(int) * (data->j));
 	if (data->j > 3)
-		data->stack = calloc( (data->j) + 1, sizeof(int));
-	data->final = calloc( (data->j) + 1, sizeof(int));
-	data->test = calloc( (data->j) + 1, sizeof(int));
+		data->stack = ft_calloc( (data->j) + 1, sizeof(int));
+	data->final = ft_calloc( (data->j) + 1, sizeof(int));
+	data->test = ft_calloc( (data->j) + 1, sizeof(int));
 	while (i < data->j)
 	{
 		data->final[i] = ft_atoi(data->tc[i], data);
@@ -104,7 +104,7 @@ int	jawaker(int argc, char **argv)
 		}
 	}
 	else
-		giveerror();
+		exit(0);
 	c += i - 2;
 	return (c);
 }
@@ -123,7 +123,7 @@ int	main(int argc, char **argv)
 		takeargs(&data, argv);
 	}
 	else
-		write(2, "Error\n", 6);
+		exit(0);
 	data.tc = ft_split(data.str, ' ', &data);
 	startshit(&data);
 }
