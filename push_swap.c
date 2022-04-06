@@ -59,10 +59,6 @@ void	startshit(t_data *data)
 	if (data->j == 1)
 		etla3(data);
 	data->i = 0;
-	// if (data->j > 3)
-	// 	data->stack = malloc(sizeof(int) * (data->j));
-	// data->final = malloc(sizeof(int) * (data->j));
-	// data->test = malloc(sizeof(int) * (data->j));
 	if (data->j > 3)
 		data->stack = ft_calloc( (data->j) + 1, sizeof(int));
 	data->final = ft_calloc( (data->j) + 1, sizeof(int));
