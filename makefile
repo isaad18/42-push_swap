@@ -1,27 +1,27 @@
-RCS	= push_swap.c\
-utils.c\
-ft_split.c\
-ft_atoi.c\
-ft_strncmp.c\
-ft_strdup.c\
-ft_strlen.c\
-ft_strchr.c\
-sa.c\
-sb.c\
-pa.c\
-pb.c\
-ra.c\
-rb.c\
-rra.c\
-rrb.c\
-parsing.c\
-for3.c\
-for4.c\
-for5.c\
-for100.c\
-for100x1.c\
-ft_calloc.c\
-ft_bzero.c
+RCS	= ./src/push_swap.c\
+./src/utils.c\
+./src/ft_split.c\
+./src/ft_atoi.c\
+./src/ft_strncmp.c\
+./src/ft_strdup.c\
+./src/ft_strlen.c\
+./src/ft_strchr.c\
+./src/sa.c\
+./src/sb.c\
+./src/pa.c\
+./src/pb.c\
+./src/ra.c\
+./src/rb.c\
+./src/rra.c\
+./src/rrb.c\
+./src/parsing.c\
+./src/for3.c\
+./src/for4.c\
+./src/for5.c\
+./src/for100.c\
+./src/for100x1.c\
+./src/ft_calloc.c\
+./src/ft_bzero.c
 
 OBJS	= $(RCS:.c=.o)
 
@@ -29,20 +29,15 @@ NAME	= push_swap
 
 CFLAGS	= -Wall -Werror -Wextra -g
 
-ft_printf = ./ft_printf/libftprintf.a
-
 $(NAME)	: $(OBJS)
-		make -C ./ft_printf
-		gcc $(CFLAGS) -o push_swap $(RCS) $(ft_printf)
+		gcc $(CFLAGS) -o push_swap $(RCS)
 
 all	: $(NAME)
 
 clean :
 		rm -f $(OBJS)
-		make clean -C ft_printf
 
 fclean : clean
 		rm -f $(NAME)
-		make fclean -C ft_printf
 
 re : fclean all
