@@ -34,3 +34,24 @@
 - rra (reverse rotate a): Shift down all elements of stack a by 1. The last element becomes the first one.
 
 - rrb (reverse rotate b): Shift down all elements of stack b by 1. The last element becomes the first one.
+
+
+## QuickStart
+
+#### Makefile is provided, so you can execute all of the files using the following command
+
+```
+make all
+```
+
+
+#### execute the file using numbers as arguements, you can put them as arguements or strings in arguements will work in both cases
+
+```
+./push_swap [Numbers]
+```
+### or
+
+```
+./push_swap " [Numbers] "
+```
